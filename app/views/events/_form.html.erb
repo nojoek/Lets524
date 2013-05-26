@@ -19,53 +19,58 @@
 
 <!-- if destination is filled out then time options are given and if time is entered then location option fields are present -->
 
-<div class="field">
+<!-- <div class="field">
     <%= f.label :final_destination %><br />
     <%= f.text_field :final_destination %>
 <%= f.check_box :final_destination %>
-  </div>
-  <div class="field">
-    <%= f.label :final_time %><br />
-    <%= f.time_select :final_time %>
-<%= f.check_box :final_time %>
-  </div>
+  </div> -->
+  <!-- <div class="field">
+      <%= f.label :final_time %><br />
+      <%= f.time_select :final_time %>
+  <%= f.check_box :final_time %>
+    </div> -->
 
 
- 
+ <table>
  <div class="field">
+
     <%= f.label :time1 %>
+	<%= f.check_box :final_time %>
     <%= f.time_select :time1 %>
-<%= f.check_box :final_time %>
+
 
 	<%= f.label :time2 %> 
+	<%= f.check_box :final_time %>
     <%= f.time_select :time2 %>
-<%= f.check_box :final_time %>
+
 
 	<%= f.label :time3 %> 
+	<%= f.check_box :final_time %>
     <%= f.time_select :time3 %>
-<%= f.check_box :final_time %>
+
 
 	<%= f.label :time4 %> 
+	<%= f.check_box :final_time %>
     <%= f.time_select  :time4 %>
-<%= f.check_box :final_time %>
+
 
 
  <div class="field">
 	<%= f.label :loc1 %> 
+	<%= f.check_box :final_destination %>
     <%= f.text_field :loc1 %>
-<%= f.check_box :final_time %>
 
 	<%= f.label :loc2 %> 
+		<%= f.check_box :final_destination %>
     <%= f.text_field :loc2 %>
-<%= f.check_box :final_time %>
 
 	<%= f.label :loc3 %> 
+		<%= f.check_box :final_destination %>
     <%= f.text_field :loc3 %>
-<%= f.check_box :final_time %>
 
 	<%= f.label :loc4 %> 
+		<%= f.check_box :final_destination %>
     <%= f.text_field :loc4 %>
-<%= f.check_box :final_time %>
 
 
 
@@ -82,5 +87,5 @@
   </div>
 
   
-  
+  </table>
 <% end %>

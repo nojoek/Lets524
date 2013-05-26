@@ -25,6 +25,8 @@ class VotesController < ApplicationController
   # GET /votes/new.json
   def new
     @vote = Vote.new
+    @vote.user_id = session[:user_id]
+    @vote.location = params[:location]
 
     respond_to do |format|
       format.html # new.html.erb

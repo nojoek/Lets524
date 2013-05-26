@@ -3,26 +3,62 @@
 <table class="table table-hover">
   <tr>
     <th>Location</th>
-    <th>Event time</th>
     <th>User</th>
-    <th>Events</th>
+    <th>Event</th>
     <th></th>
-    <th></th>
-    <th></th>
+<th></th>
+<th></th>
   </tr>
 
 <% @votes.each do |vote| %>
   <tr>
     <td><%= vote.location_id %></td>
-    <td><%= vote.event_time_id %></td>
     <td><%= vote.user_id %></td>
     <td><%= vote.events_id %></td>
+    <td>
+       <%= form_tag votes_url, method: 'post' do %>
+         <%= hidden_field_tag :user_id, session[:user_id] %>
+          
+         <%= button_tag "+1", class: 'btn btn-success' %>
+       <% end %>
+     </td>
     <td><%= link_to 'Show', vote %></td>
     <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
     <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
+
+
+<table class="table table-hover">
+  <tr>
+    <th>Time</th>
+    <th>User</th>
+    <th>Event</th>
+    <th></th>
+<th></th>
+<th></th>
+<th></th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.event_time_id %></td>
+    <td><%= vote.user_id %></td>
+    <td><%= vote.events_id %></td>
+    <td>
+       <%= form_tag votes_url, method: 'post' do %>
+         <%= hidden_field_tag :user_id, session[:user_id] %>
+         <%= button_tag "+1", class: 'btn btn-success' %>
+       <% end %>
+     </td>
+    <td><%= link_to 'Show', vote %></td>
+    <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
+    <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
 
 <br />
 
