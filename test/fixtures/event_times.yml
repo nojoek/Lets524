@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time1: 2013-05-24 22:41:47
+  time2: 2013-05-24 22:41:47
+  time3: 2013-05-24 22:41:47
+  time4: 2013-05-24 22:41:47
+  event_id: 1
+
+two:
+  time1: 2013-05-24 22:41:47
+  time2: 2013-05-24 22:41:47
+  time3: 2013-05-24 22:41:47
+  time4: 2013-05-24 22:41:47
+  event_id: 1

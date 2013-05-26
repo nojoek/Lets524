@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+<p>
+  <b>User:</b>
+  <%= @event.user_id %>
+</p>
+
+<p>
+  <b>Final destination:</b>
+  <%= @event.final_destination %>
+</p>
+
+<p>
+  <b>Final time:</b>
+  <%= @event.final_time %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+Send the event on...
+
+
+	<%= form_tag(users_url, method: 'post') do %>
+
+	  <div>
+	    <%= label_tag :name %> 
+	    <%= text_field_tag :name %>
+	  </div>
+
+	  <div>
+	    <%= label_tag :email %> 
+	    <%= email_field_tag :email %>
+	  </div>
+
+
+	  <div>
+	    <%= submit_tag "Send it" %>
+	  </div>
+	<% end %>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

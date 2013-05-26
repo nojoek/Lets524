@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Time1:</b>
+  <%= @event_time.time1.strftime "%l:%M %p"  %>
+</p>
+
+<p>
+  <b>Time2:</b>
+  <%= @event_time.time2.strftime "%l:%M %p" %>
+</p>
+
+<p>
+  <b>Time3:</b>
+  <%= @event_time.time3.strftime "%l:%M %p" %>
+</p>
+
+<p>
+  <b>Time4:</b>
+  <%= @event_time.time4.strftime "%l:%M %p" %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @event_time.event_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_time_path(@event_time) %> |
+<%= link_to 'Back', event_times_path %>
