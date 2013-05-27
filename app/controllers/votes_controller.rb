@@ -1,85 +1,64 @@
 class VotesController < ApplicationController
-  # GET /votes
-  # GET /votes.json
+  before_filter :require_signed_in_user
+  before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+
+  def require_signed_in_user
+    unless signed_in?
+      redirect_to new_session_url, notice: "Must be signed in for that."
+    end
+  end
+
+  def authorize_user
+    @vote = Vote.find_by_id(params[:id])
+
+    if @vote.user_id != session[:user_id]
+      redirect_to votes_url, notice: "Nice try."
+    end
+  end
+
   def index
     @votes = Vote.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @votes }
-    end
   end
 
-  # GET /votes/1
-  # GET /votes/1.json
   def show
-    @vote = Vote.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @vote }
-    end
+    @vote = Vote.find_by_id(params[:id])
   end
 
-  # GET /votes/new
-  # GET /votes/new.json
   def new
     @vote = Vote.new
-    @vote.user_id = session[:user_id]
-    @vote.location = params[:location]
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @vote }
-    end
   end
 
-  # GET /votes/1/edit
-  def edit
-    @vote = Vote.find(params[:id])
-  end
-
-  # POST /votes
-  # POST /votes.json
   def create
-    @vote = Vote.new(params[:vote])
+    @vote = Vote.new
+    @vote.user_id = params[:user_id]
+    
 
-    respond_to do |format|
-      if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
-        format.json { render json: @vote, status: :created, location: @vote }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
-      end
+    if @vote.save
+      redirect_to events_url
+    else
+      render 'new'
     end
   end
 
-  # PUT /votes/1
-  # PUT /votes/1.json
+  def edit
+    @vote = Vote.find_by_id(params[:id])
+  end
+
   def update
-    @vote = Vote.find(params[:id])
+    @vote = Vote.find_by_id(params[:id])
+    @vote.user_id = params[:user_id]
+   
 
-    respond_to do |format|
-      if @vote.update_attributes(params[:vote])
-        format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
-      end
+    if @vote.save
+            redirect_to votes_url
+          else
+      render 'edit'
     end
   end
 
-  # DELETE /votes/1
-  # DELETE /votes/1.json
   def destroy
-    @vote = Vote.find(params[:id])
+    @vote = Vote.find_by_id(params[:id])
     @vote.destroy
-
-    respond_to do |format|
-      format.html { redirect_to votes_url }
-      format.json { head :no_content }
-    end
-  end
+        redirect_to votes_url
+      end
 end

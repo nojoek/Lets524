@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525192306) do
+ActiveRecord::Schema.define(:version => 20130527051526) do
 
   create_table "event_times", :force => true do |t|
     t.datetime "time1"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(:version => 20130525192306) do
     t.datetime "time3"
     t.datetime "time4"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "up_votes",   :default => 0, :null => false
+    t.integer  "down_votes", :default => 0, :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -47,8 +49,10 @@ ActiveRecord::Schema.define(:version => 20130525192306) do
     t.string   "loc3"
     t.string   "loc4"
     t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "up_votes",   :default => 0, :null => false
+    t.integer  "down_votes", :default => 0, :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -57,8 +61,11 @@ ActiveRecord::Schema.define(:version => 20130525192306) do
     t.string   "phone"
     t.integer  "zip"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "up_votes",        :default => 0, :null => false
+    t.integer  "down_votes",      :default => 0, :null => false
+    t.integer  "event_id"
   end
 
   create_table "votes", :force => true do |t|
@@ -69,5 +76,19 @@ ActiveRecord::Schema.define(:version => 20130525192306) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  create_table "votings", :force => true do |t|
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.string   "voter_type"
+    t.integer  "voter_id"
+    t.boolean  "up_vote",       :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "votings", ["voteable_type", "voteable_id", "voter_type", "voter_id"], :name => "unique_voters", :unique => true
+  add_index "votings", ["voteable_type", "voteable_id"], :name => "index_votings_on_voteable_type_and_voteable_id"
+  add_index "votings", ["voter_type", "voter_id"], :name => "index_votings_on_voter_type_and_voter_id"
 
 end

@@ -5,4 +5,15 @@ class Vote < ActiveRecord::Base
  belongs_to :event
  
  has_many :locations
+ 
+ 
+ validates :user, presence: true
+  validate :user_cannot_vote_more_than_three_times
+
+  def user_cannot_vote_more_than_three_times
+    if user.votes.count >= 2
+      errors.add(:user_id, "has already voted two times")
+      
+    end
+  end
 end

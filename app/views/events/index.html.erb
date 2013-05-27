@@ -12,16 +12,16 @@
     <th></th>
   </tr>
 
-<% @events.each do |event| %>
+<% @events.each do |z| %>
   <tr>
-    <td><%= event.title %></td>
-    <td><%= event.user_id %></td>
-    <td><%= event.final_destination %></td>
-    <td><%= event.final_time.strftime "%D  %l:%M%p" %></td>
-    <td><%= event.description %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= z.title %></td>
+    <td><%= z.user_id %></td>
+    <td><%= z.final_destination %></td>
+    <td><%= z.final_time %></td>
+    <td><%= z.description %></td>
+    <td><%= link_to 'Show', z %></td>
+    <td><%= link_to 'Edit', edit_event_path(z) %></td>
+    <td><%= link_to 'Destroy', z, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
